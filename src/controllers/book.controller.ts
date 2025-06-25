@@ -55,7 +55,6 @@ const getAllBooks = async (req: Request, res: Response) => {
 // For getting a single book by id
 const getSingleBook = async (req: Request, res: Response) => {
     const { bookId } = req.params;
-    console.log(bookId);
     if (!bookId) {
         return res.status(400).json({
             "message": "Book id is required",
@@ -126,4 +125,41 @@ const createNewBook = async (req: Request, res: Response) => {
     }
 }
 
-export { getSingleBook, getAllBooks, createNewBook };
+// For updating a book
+const updateBook = async (req: Request, res: Response) => {
+    const { bookId } = req.params;
+    const data = req.body;
+    if (!bookId) {
+        return res.status(400).json({
+            "message": "Book id is required",
+            "success": false,
+            "error": "error: Book id can not be empty"
+        });
+    };
+    try {
+        const bookData = await Books.findById(bookId);
+        if (!bookData) {
+            return res.status(404).json({
+                "message": "Not found!",
+                "success": false,
+                "error": "Book id is not exist on the DB"
+            });
+        }
+
+        const updatedData = await Books.findByIdAndUpdate(bookId, data, {new: true});
+
+        res.status(200).json({
+            "success": true,
+            "message": "Books updated successfully",
+            "data": updatedData
+        });
+    } catch (err) {
+        return res.status(500).json({
+            "message": "Internal Server Error!",
+            "success": false,
+            "error": err
+        });
+    }
+}
+
+export { getSingleBook, getAllBooks, createNewBook, updateBook };
