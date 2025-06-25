@@ -14,6 +14,7 @@ const bookScheam = new mongoose.Schema<IBook>({
     },
     genre: {
         type: String,
+        enum: ["FICTION", "NON_FICTION", "SCIENCE", "BIOGRAPHY", "FANTASY"],
         required: true,
         trim: true
     },
