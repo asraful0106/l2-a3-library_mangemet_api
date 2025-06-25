@@ -162,4 +162,39 @@ const updateBook = async (req: Request, res: Response) => {
     }
 }
 
-export { getSingleBook, getAllBooks, createNewBook, updateBook };
+// For delting a book
+const deleteBook = async (req: Request, res: Response) => {
+    const { bookId } = req.params;
+    if (!bookId) {
+        return res.status(400).json({
+            "message": "Book id is required",
+            "success": false,
+            "data": null
+        });
+    };
+    try {
+        const bookData = await Books.findById(bookId);
+        if (!bookData) {
+            return res.status(404).json({
+                "message": "Not found!",
+                "success": false,
+                "error": "Book id is not exist on the DB"
+            });
+        }
+        
+        await Books.findByIdAndDelete(bookId);
+        res.status(200).json({
+            "success": true,
+            "message": "Book deleted successfully",
+            "error": "Book id is not exist on the DB"
+        });
+    } catch (err) {
+        return res.status(500).json({
+            "message": "Internal Server Error!",
+            "success": false,
+            "error": err
+        });
+    }
+}
+
+export { getSingleBook, getAllBooks, createNewBook, updateBook, deleteBook };

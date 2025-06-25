@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express';
-import { createNewBook, getAllBooks, getSingleBook, updateBook } from '../controllers/book.controller';
+import { createNewBook, deleteBook, getAllBooks, getSingleBook, updateBook } from '../controllers/book.controller';
 
 const bookRouter: Router = Router();
 
@@ -21,6 +21,11 @@ bookRouter.post('/', async (req: Request, res: Response) => {
 // For updating a book
 bookRouter.put('/:bookId', async (req: Request, res: Response) => {
     await updateBook(req, res);
+});
+
+// For deleting a book
+bookRouter.delete('/:bookId', async (req: Request, res: Response) => {
+    await deleteBook(req, res);
 });
 
 export default bookRouter;
