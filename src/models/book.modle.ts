@@ -35,9 +35,11 @@ const bookScheam = new mongoose.Schema<IBook>({
     },
     available: {
         type: Boolean,
-        required: true,
         default: true
     }
+}, {
+    versionKey: false,
+    timestamps: true
 });
 
 const Books = mongoose.model("Books", bookScheam);

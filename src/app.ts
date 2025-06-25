@@ -1,5 +1,6 @@
 import express, { Request, Response, urlencoded } from 'express';
 import cors from 'cors';
+import bookRouter from './routers/book.route';
 
 const app = express();
 
@@ -11,9 +12,8 @@ app.use(urlencoded({ extended: true }));
 app.use(cors());
 
 
-app.get('/', (req: Request, res: Response) => {
-    res.send("Server is running!!!");
-});
+// For handeling all request for 'api/book'
+app.use('/api/books', bookRouter);
 
 
 export default app;
