@@ -1,5 +1,5 @@
 import app from "./app";
-import conntectToDB from "./database/db";
+import connectToDB from "./database/db";
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -12,7 +12,7 @@ async function main() {
         console.log("DATABASE_LINK environment variable is not set.");
         process.exit(1);
     }
-    conntectToDB(dbUri);
+    await connectToDB(dbUri);
     app.listen(PORT, () => console.log(`Server is running at PORT: ${PORT}`));
 }
 

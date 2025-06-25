@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-async function conntectToDB(dbURL: string) {
+async function connectToDB(dbURL: string) {
     try {
         await mongoose.connect(dbURL);
         console.log("db is connected!!");
@@ -14,4 +14,4 @@ async function conntectToDB(dbURL: string) {
     }
 }
 
-export default conntectToDB;
+export default connectToDB;
