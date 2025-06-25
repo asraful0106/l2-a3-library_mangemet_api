@@ -63,29 +63,29 @@ npm run dev
 
 Library Management API with Express, TypeScript & MongoDB<br>
 ```
-├── node_modules<br>
-├── src<br>
-│   ├── controllers<br>
-│   │   ├── book.controller.ts<br>
-│   │   └── borrow.controller.ts<br>
-│   ├── database<br>
-│   │   └── db.ts<br>
-│   ├── interfaces<br>
-│   │   ├── book.interface.ts<br>
-│   │   └── borrow.interface.ts<br>
-│   ├── models<br>
-│   │   ├── book.model.ts<br>
-│   │   └── borrow.model.ts<br>
-│   ├── routers<br>
-│   │   ├── book.route.ts<br>
-│   │   └── borrow.route.ts<br>
-│   ├── app.ts<br>
-│   └── server.ts<br>
-├── .env<br>
-├── .gitignore<br>
-├── package-lock.json<br>
-├── package.json<br>
-└── tsconfig.json<br>
+├── node_modules
+├── src
+│   ├── controllers
+│   │   ├── book.controller.ts
+│   │   └── borrow.controller.ts
+│   ├── database
+│   │   └── db.ts
+│   ├── interfaces
+│   │   ├── book.interface.ts
+│   │   └── borrow.interface.ts
+│   ├── models
+│   │   ├── book.model.ts
+│   │   └── borrow.model.ts
+│   ├── routers
+│   │   ├── book.route.ts
+│   │   └── borrow.route.ts
+│   ├── app.ts
+│   └── server.ts
+├── .env
+├── .gitignore
+├── package-lock.json
+├── package.json
+└── tsconfig.json
 ```
 
 ## Contact
