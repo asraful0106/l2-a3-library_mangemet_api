@@ -18,7 +18,7 @@ const getAllBooks = async (req: Request, res: Response) => {
             // For no filtering on data
             if (!queryData.filter && !queryData.sortBy && !queryData.sort && !queryData.limit) {
                 const allBook = await Books.find();
-                res.status(200).json({
+                return res.status(200).json({
                     "success": true,
                     "message": "Books retrieved successfully",
                     "data": allBook
@@ -46,6 +46,40 @@ const getAllBooks = async (req: Request, res: Response) => {
         console.log(err);
         return res.status(400).json({
             "message": "Validation Error",
+            "success": false,
+            "error": err
+        });
+    }
+}
+
+// For getting a single book by id
+const getSingleBook = async (req: Request, res: Response) => {
+    const { bookId } = req.params;
+    console.log(bookId);
+    if (!bookId) {
+        return res.status(400).json({
+            "message": "Book id is required",
+            "success": false,
+            "error": "error: Book id can not be empty"
+        });
+    };
+    try {
+        const bookData = await Books.findById(bookId);
+        if (!bookData) {
+            return res.status(404).json({
+                "message": "Not found!",
+                "success": false,
+                "error": "Book id is not exist on the DB"
+            });
+        }
+        res.status(200).json({
+            "success": true,
+            "message": "Books retrieved successfully",
+            "data": bookData
+        });
+    } catch (err) {
+        return res.status(500).json({
+            "message": "Internal Server Error!",
             "success": false,
             "error": err
         });
@@ -92,4 +126,4 @@ const createNewBook = async (req: Request, res: Response) => {
     }
 }
 
-export { getAllBooks, createNewBook };
+export { getSingleBook, getAllBooks, createNewBook };
