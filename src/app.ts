@@ -17,6 +17,6 @@ app.use(cors());
 app.use('/api/books', bookRouter);
 
 // For handeling all request for 'api/borrow'
-app.use('api/borrow', borrowRouter);
+app.use('/api/borrow', borrowRouter);
 
 export default app;
